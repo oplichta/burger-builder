@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Try it out! App deployed on [react-hamburger-builder.herokuapp.com](https://react-hamburger-builder.herokuapp.com/)
 
 ## Available Scripts
 
