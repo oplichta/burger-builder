@@ -15,7 +15,6 @@ const Burger = (props) => {
   if (dynamicIngredients.length === 0) {
     dynamicIngredients = <p>Please start adding ingredients!</p>;
   }
-  console.log(dynamicIngredients);
   return (
     <div className="Burger">
       <BurgerIngredient type="bread-top" />
