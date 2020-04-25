@@ -11,6 +11,9 @@ const controls = [
 
 const BuildControls = (props) => (
   <div className="BuildControls">
+    <p>
+      Current Price: <strong>{props.totalPrice.toFixed(2)}</strong>
+    </p>
     {controls.map((crtl) => (
       <BuildControl
         key={crtl.label}
