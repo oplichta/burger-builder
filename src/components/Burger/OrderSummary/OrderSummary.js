@@ -20,11 +20,11 @@ class OrderSummary extends Component {
         <p>
           <strong>Total Price: {this.props.price} </strong>
         </p>
-        <Button btnType="Success" clicked={this.props.purchaseContiniued}>
-          Continue
-        </Button>
         <Button btnType="Danger" clicked={this.props.purchaseCanceled}>
           Cancel
+        </Button>
+        <Button btnType="Success" clicked={this.props.purchaseContinued}>
+          Continue
         </Button>
       </Aud>
     );
