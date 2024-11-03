@@ -1,4 +1,4 @@
-## Try it out! App deployed on [react-hamburger-builder.herokuapp.com](https://react-hamburger-builder.herokuapp.com/)
+## Try it out! App deployed on [react-hamburger-bldr.web.app](https://react-hamburger-bldr.web.app)
 
 ## Available Scripts
 
