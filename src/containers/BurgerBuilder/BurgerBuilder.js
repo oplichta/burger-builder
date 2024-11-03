@@ -7,6 +7,7 @@ import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import axios from '../../axios-orders';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
+import withNavigate from '../../hoc/withNavigate/withNavigate';
 
 const INGREDIENT_PRICES = {
   tomato: 0.6,
@@ -94,7 +95,10 @@ class BurgerBuilder extends Component {
     }
     queryParams.push('price=' + this.state.totalPrice);
     const queryString = queryParams.join('&');
-    this.props.history.push({ pathname: '/checkout', search: '?' + queryString });
+    this.props.navigate({
+      pathname: '/checkout',
+      search: '?' + queryString
+    });
   };
 
   render() {
@@ -146,4 +150,4 @@ class BurgerBuilder extends Component {
   }
 }
 
-export default withErrorHandler(BurgerBuilder, axios);
+export default withNavigate(withErrorHandler(BurgerBuilder, axios));

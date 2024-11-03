@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
-
-import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary';
-import ContactData from './ContactData/ContactData';
+import React, { Component } from "react";
+import { Routes, Route } from "react-router-dom";
+import withRouter from "../../hoc/withRouter/withRouter";
+import CheckoutSummary from "../../components/Order/CheckoutSummary/CheckoutSummary";
+import ContactData from "./ContactData/ContactData";
 
 class Checkout extends Component {
   state = {
@@ -10,12 +10,12 @@ class Checkout extends Component {
     price: 0,
   };
 
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     const query = new URLSearchParams(this.props.location.search);
     const ingredients = {};
     let price = 0;
     for (let param of query.entries()) {
-      if (param[0] === 'price') {
+      if (param[0] === "price") {
         price = param[1];
       } else {
         ingredients[param[0]] = +param[1];
@@ -25,27 +25,34 @@ class Checkout extends Component {
   }
 
   checkoutCancelledHandler = () => {
-    this.props.history.goBack();
+    this.props.navigate(-1);
   };
 
   checkoutContinuedHandler = () => {
-    this.props.history.replace('/checkout/contact-data');
+    this.props.navigate("/checkout/contact-data");
   };
   render() {
-    return (
-      <div>
-        <CheckoutSummary
-          checkoutCancelled={this.checkoutCancelledHandler}
-          checkoutContinued={this.checkoutContinuedHandler}
-          ingredients={this.state.ingredients}
-        />
-        <Route
-          path={this.props.match.path + '/contact-data'}
-          render={(props) => <ContactData ingredients={this.state.ingredients} price={this.state.totalPrice} {...props} />}
-        />
-      </div>
-    );
+    let summary = <p>Loading...</p>;
+    if (this.state.ingredients) {
+      summary = (
+        <div>
+          <CheckoutSummary
+            checkoutCancelled={this.checkoutCancelledHandler}
+            checkoutContinued={this.checkoutContinuedHandler}
+            ingredients={this.state.ingredients}
+          />
+          <Routes>
+            <Route
+              path="contact-data"
+              element={<ContactData ingredients={this.state.ingredients} price={this.state.totalPrice} />}
+            />
+          </Routes>
+        </div>
+      );
+    }
+
+    return summary;
   }
 }
 
-export default Checkout;
+export default withRouter(Checkout);
