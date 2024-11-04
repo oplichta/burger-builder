@@ -31,6 +31,7 @@ class Checkout extends Component {
   checkoutContinuedHandler = () => {
     this.props.navigate("/checkout/contact-data");
   };
+  
   render() {
     let summary = <p>Loading...</p>;
     if (this.state.ingredients) {
